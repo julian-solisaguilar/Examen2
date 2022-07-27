@@ -1,20 +1,15 @@
-.Title_header {
+.TitleHeader {
   position: relative;
   z-index: 4;
-  pointer-events: none;
-  margin-left: 283px;
-  width: 874px;
-  min-width: 874px;
   text-align: left;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  color: rgba(255, 255, 255, 1);
   font-style: normal;
-  font-family: Heebo;
   font-weight: 700;
   font-size: 32px;
   line-height: 47px;
+  color: #FFFFFF;
   background-color: rgba(26, 112, 241, 1);
 }
 
@@ -96,7 +91,7 @@
   align-items: center;
   padding: 0px;
   max-height: 272px;
-  max-width:281px;
+  max-width: 281px;
   overflow-y: auto;
   width: 281px;
   height: 272px;
@@ -110,4 +105,15 @@
   padding: 0px;
   gap: 10px;
   width: 100%;
+}
+
+.Cans {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  gap: 31px;
+  width: 131px;
+  height: 540px;
 }

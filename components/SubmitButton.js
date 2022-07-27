@@ -14,6 +14,7 @@ export default function SubmitButton(props) {
         color={props.color}
         type="submit"
         onClick={props.onClick}
+        disabled={props.disabled}
       >
         {" "}
         {props.text}{" "}

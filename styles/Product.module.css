@@ -1,0 +1,26 @@
+.Product{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  gap: 10px;
+  width: 131px;
+  height: 116px;
+}
+
+.ProductProps{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 6px;
+  width: 54px;
+  height: 76px;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 35px;
+  color: #000000;
+}

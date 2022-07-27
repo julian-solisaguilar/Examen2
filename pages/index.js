@@ -6,6 +6,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCartOutlined";
 import SubmitForm from "../components/SubmitForm";
 import SubmitButton from "../components/SubmitButton";
 import ClearButton from "../components/ClearButton";
+import Product from "../components/Product";
 
 const CartItem = styled(ListItem)({
   width: `260px`,
@@ -22,12 +23,13 @@ const CartItem = styled(ListItem)({
 export default function Home() {
   const [soda, setSoda] = useState("");
   const [amount, setAmount] = useState(0);
+  const [isValidSelection, setIsValidSelection] = useState(false);
   const [cart, setCart] = useState([]);
   const [cans, setCans] = useState([
-    { soda: "CocaCola", amount: 10, price: 500 },
-    { soda: "Pepsi", amount: 8, price: 600 },
-    { soda: "Fanta", amount: 10, price: 550 },
-    { soda: "Sprite", amount: 15, price: 725 },
+    { soda: "CocaCola", amount: 10, price: 500, src: "CocaCola.svg" },
+    { soda: "Pepsi", amount: 8, price: 600, src: "Pepsi.svg" },
+    { soda: "Fanta", amount: 10, price: 550, src: "Fanta.svg" },
+    { soda: "Sprite", amount: 15, price: 725, src: "Sprite.svg" },
   ]);
   const [coins, setCoins] = useState([
     { value: 500, amount: 20 },
@@ -37,8 +39,39 @@ export default function Home() {
   ]);
 
   useEffect(() => {
-    console.log(cart);
+    if (isValidSelection) {
+      substractCan();
+    }
   }, [cart]);
+
+  useEffect(() => {
+    checkSelection();
+  }, [soda, amount]);
+
+  const substractCan = () => {
+    setCans(
+      cans.map((can) => {
+        if (can.soda === soda) {
+          can.amount -= amount;
+        }
+        return can;
+      }),
+    );
+  }
+
+  const checkSelection = () => {
+    let selection = cans.find((can) => can.soda === soda);
+    if (soda && amount) {
+      if (selection.amount >= amount) {
+        setIsValidSelection(true);
+      } else {
+        setIsValidSelection(false);
+      }
+    }
+    else {
+      setIsValidSelection(false);
+    }
+  }
 
   const getItems = () => {
     if (cart.length > 0) {
@@ -75,7 +108,10 @@ export default function Home() {
           price = can.price;
         }
       });
-      setCart([...cart, { soda: soda, amount: amount, price: price }]);
+      setCart([
+        ...cart,
+        { soda: soda, amount: amount, price: price, key: cart.length },
+      ]);
     }
   };
 
@@ -88,14 +124,29 @@ export default function Home() {
     setCart([]);
   };
 
+  const getProducts = () => {
+    return cans.map((can, index) => {
+      return (
+        <Product
+          key={index}
+          image={can.src}
+          name={can.soda}
+          amount={can.amount}
+          price={can.price}
+        />
+      );
+    });
+  };
+
   return (
     <>
       <div className={styles.Title}>
-        <h1 className={styles.Title_header}>
+        <h1 className={styles.TitleHeader}>
           EXAMEN 2 - INGENIERIA DE SOFTWARE - PARTE 2 - B97634
         </h1>
       </div>
       <div className={styles.Container}>
+        <div className={styles.Cans}>{getProducts()}</div>
         <div className={styles.Machine}>
           <img src="../maquinita_1.png" alt="machine" />
           <div className={styles.Inputs}>
@@ -103,6 +154,8 @@ export default function Home() {
               addToCart={addToCart}
               setAmount={setAmount}
               setSoda={setSoda}
+              value={soda}
+              disabled={isValidSelection}
             />
           </div>
         </div>

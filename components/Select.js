@@ -11,6 +11,7 @@ export default function Select(props) {
   return (
     <>
       <SelectSoda
+        value={props.value}
         variant="outlined"
         size="medium"
         label={`Refresco`}
