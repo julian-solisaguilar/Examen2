@@ -1,8 +1,3 @@
-import {
-  TextField,
-  MenuItem,
-} from "@mui/material";
-import { styled } from "@mui/material/styles";
 import SubmitButton from "./SubmitButton";
 import Select from "./Select";
 import Input from "./Input";
@@ -18,7 +13,7 @@ export default function SubmitForm(props) {
 
   return (
     <>
-      <Select setSoda={props.setSoda} items={items} />
+      <Select setSoda={props.setSoda} items={items} value={props.value}/>
       <Input setAmount={props.setAmount} />
       <SubmitButton onClick={props.addToCart} text={"Agregar al Carrito"} color="primary" />
     </>
