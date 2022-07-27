@@ -23,6 +23,7 @@ const CartItem = styled(ListItem)({
 export default function Home() {
   const [soda, setSoda] = useState("");
   const [amount, setAmount] = useState(0);
+  const [isValidSelection, setIsValidSelection] = useState(false);
   const [cart, setCart] = useState([]);
   const [cans, setCans] = useState([
     { soda: "CocaCola", amount: 10, price: 500, src: "CocaCola.svg" },
@@ -38,28 +39,39 @@ export default function Home() {
   ]);
 
   useEffect(() => {
-    let key = cart.length;
-    let canToSubstract = "";
-    let amountToSubstract = 0;
-    cart.find((item) => {
-      if (key === item.key) {
-        canToSubstract = item.soda;
-        amountToSubstract = item.amount;
-      }
-    });
-    console.log(canToSubstract, amountToSubstract);
-    //update cans amount
-    setCans((prevCans) =>
-      prevCans.map((can) => {
-        if (can.soda === canToSubstract) {
-          can.amount = can.amount - amountToSubstract;
+    if (isValidSelection) {
+      substractCan();
+    }
+  }, [cart]);
+
+  useEffect(() => {
+    checkSelection();
+  }, [soda, amount]);
+
+  const substractCan = () => {
+    setCans(
+      cans.map((can) => {
+        if (can.soda === soda) {
+          can.amount -= amount;
         }
         return can;
-      }
-      )
+      }),
     );
-    console.log(cans);
-  }, [cart]);
+  }
+
+  const checkSelection = () => {
+    let selection = cans.find((can) => can.soda === soda);
+    if (soda && amount) {
+      if (selection.amount >= amount) {
+        setIsValidSelection(true);
+      } else {
+        setIsValidSelection(false);
+      }
+    }
+    else {
+      setIsValidSelection(false);
+    }
+  }
 
   const getItems = () => {
     if (cart.length > 0) {
@@ -143,6 +155,7 @@ export default function Home() {
               setAmount={setAmount}
               setSoda={setSoda}
               value={soda}
+              disabled={isValidSelection}
             />
           </div>
         </div>
