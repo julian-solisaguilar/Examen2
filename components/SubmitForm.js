@@ -7,12 +7,6 @@ import SubmitButton from "./SubmitButton";
 import Select from "./Select";
 import Input from "./Input";
 
-const InputAmount = styled(TextField)({
-  width: `220px`,
-  height: `79px`,
-  margin: `0px`,
-});
-
 export default function SubmitForm(props) {
 
   const items = [

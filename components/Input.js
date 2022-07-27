@@ -1,7 +1,11 @@
-import { TextField, MenuItem } from "@mui/material";
+import { TextField } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import SubmitButton from "./SubmitButton";
-import Select from "./Select";
+
+const InputAmount = styled(TextField)({
+  width: `220px`,
+  height: `79px`,
+  margin: `0px`,
+});
 
 export default function Input(props) {
   return (
