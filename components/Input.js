@@ -8,15 +8,20 @@ const InputAmount = styled(TextField)({
 });
 
 export default function Input(props) {
+  const handleAmountChange = (event) => {
+    props.setInput(event.target.value);
+  }
+
   return (
     <>
       <InputAmount
+        value={props.input}
         variant="outlined"
         size="medium"
         label={`Cantidad de Refrescos`}
         type="number"
         required={true}
-        onChange={(e) => props.setAmount(parseInt(e.target.value))}
+        onChange={handleAmountChange}
         onInput={(e) => {
           e.target.value = Math.max(0, parseInt(e.target.value))
             .toString()
