@@ -14,6 +14,7 @@
 
 import { TextField, Button, Dialog } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import { prependOnceListener } from "process";
 
 const Pago1 = styled("div")(({ theme }) => ({
   backgroundColor: `rgba(255, 255, 255, 1)`,
@@ -58,10 +59,38 @@ const Frame2 = styled("div")({
   margin: `0px`,
 });
 
-const Title = styled("div")(({ theme }) => ({
+const Frame1 = styled("div")({
+  display: `flex`,
+  position: `relative`,
+  isolation: `isolate`,
+  flexDirection: `row`,
+  justifyContent: `flex-start`,
+  alignItems: `flex-start`,
+  padding: `0px`,
+  boxSizing: `border-box`,
+  margin: `0px`,
+});
+
+const NameAndTitle = styled("div")({
+  display: `flex`,
+  position: `relative`,
+  isolation: `isolate`,
+  flexDirection: `column`,
+  justifyContent: `flex-start`,
+  alignItems: `flex-start`,
+  padding: `0px`,
+  boxSizing: `border-box`,
+  width: `380px`,
+  margin: `0px`,
+});
+
+const ContratarEmpleado = styled("div")(({ theme }) => ({
   textAlign: `left`,
   whiteSpace: `pre-wrap`,
   color: `rgba(0, 0, 0, 0.87)`,
+  fontStyle: `normal`,
+  fontFamily: `Heebo`,
+  fontWeight: `700`,
   fontSize: `24px`,
   letterSpacing: `0px`,
   textDecoration: `none`,
@@ -70,10 +99,39 @@ const Title = styled("div")(({ theme }) => ({
   margin: `0px`,
 }));
 
+const Frame21 = styled("div")({
+  display: `flex`,
+  position: `relative`,
+  isolation: `isolate`,
+  flexDirection: `row`,
+  justifyContent: `flex-start`,
+  alignItems: `flex-start`,
+  padding: `0px`,
+  boxSizing: `border-box`,
+  margin: `0px`,
+});
+
+const NameAndTitle1 = styled("div")({
+  display: `flex`,
+  position: `relative`,
+  isolation: `isolate`,
+  flexDirection: `column`,
+  justifyContent: `flex-start`,
+  alignItems: `flex-start`,
+  padding: `0px`,
+  boxSizing: `border-box`,
+  width: `380px`,
+  margin: `0px`,
+});
+
 const JuliancitoSVendingMa = styled("div")({
   textAlign: `left`,
   whiteSpace: `pre-wrap`,
   color: `rgba(25, 118, 210, 1)`,
+  fontStyle: `normal`,
+  fontFamily: `Heebo`,
+  fontWeight: `400`,
+  fontSize: `14px`,
   letterSpacing: `0px`,
   textDecoration: `none`,
   textTransform: `none`,
@@ -95,7 +153,7 @@ const Details = styled("div")({
   margin: `7px 0px 0px 0px`,
 });
 
-const Coins = styled("div")({
+const Frame11 = styled("div")({
   display: `flex`,
   position: `relative`,
   isolation: `isolate`,
@@ -109,10 +167,14 @@ const Coins = styled("div")({
   margin: `0px`,
 });
 
-const Comment = styled("div")({
+const SeRecomiendaPagarCon = styled("div")({
   textAlign: `left`,
   whiteSpace: `pre-wrap`,
   color: `rgba(158, 158, 158, 1)`,
+  fontStyle: `normal`,
+  fontFamily: `Heebo`,
+  fontWeight: `400`,
+  fontSize: `14px`,
   letterSpacing: `0px`,
   textDecoration: `none`,
   textTransform: `none`,
@@ -120,9 +182,55 @@ const Comment = styled("div")({
   margin: `0px`,
 });
 
+const Quinientos = styled("div")({
+  display: `flex`,
+  position: `relative`,
+  isolation: `isolate`,
+  flexDirection: `row`,
+  justifyContent: `center`,
+  alignItems: `center`,
+  padding: `0px`,
+  boxSizing: `border-box`,
+  alignSelf: `stretch`,
+  margin: `8px 0px 0px 0px`,
+});
+
 const TextFieldStandard = styled(TextField)({
   flexGrow: `1`,
+  margin: `0px`,
+});
+
+const TextFieldStandard1 = styled(TextField)({
+  flexGrow: `1`,
   margin: `0px 0px 0px 5px`,
+});
+
+const Quinientos1 = styled("div")({
+  display: `flex`,
+  position: `relative`,
+  isolation: `isolate`,
+  flexDirection: `row`,
+  justifyContent: `center`,
+  alignItems: `center`,
+  padding: `0px`,
+  boxSizing: `border-box`,
+  alignSelf: `stretch`,
+  margin: `8px 0px 0px 0px`,
+});
+
+const TextFieldStandard2 = styled(TextField)({
+  flexGrow: `1`,
+  margin: `0px`,
+});
+
+const TextFieldStandard3 = styled(TextField)({
+  flexGrow: `1`,
+  margin: `0px 0px 0px 5px`,
+});
+
+const TextFieldStandard4 = styled(TextField)({
+  width: `185px`,
+  margin: `8px 0px 0px 0px`,
 });
 
 const Inputs = styled("div")({
@@ -139,7 +247,55 @@ const Inputs = styled("div")({
   margin: `8px 0px 0px 0px`,
 });
 
-const Items = styled("div")({
+const Frame12 = styled("div")({
+  display: `flex`,
+  position: `relative`,
+  isolation: `isolate`,
+  flexDirection: `row`,
+  justifyContent: `flex-start`,
+  alignItems: `flex-start`,
+  padding: `0px`,
+  boxSizing: `border-box`,
+  alignSelf: `stretch`,
+  height: `53px`,
+  margin: `0px`,
+});
+
+const TextFieldStandard5 = styled(TextField)({
+  flexGrow: `1`,
+  margin: `0px`,
+});
+
+const TextFieldStandard6 = styled(TextField)({
+  flexGrow: `1`,
+  margin: `0px 0px 0px 5px`,
+});
+
+const Frame22 = styled("div")({
+  display: `flex`,
+  position: `relative`,
+  isolation: `isolate`,
+  flexDirection: `row`,
+  justifyContent: `flex-start`,
+  alignItems: `flex-start`,
+  padding: `0px`,
+  boxSizing: `border-box`,
+  alignSelf: `stretch`,
+  height: `53px`,
+  margin: `5px 0px 0px 0px`,
+});
+
+const TextFieldStandard7 = styled(TextField)({
+  flexGrow: `1`,
+  margin: `0px`,
+});
+
+const TextFieldStandard8 = styled(TextField)({
+  flexGrow: `1`,
+  margin: `0px 0px 0px 5px`,
+});
+
+const Frame32 = styled("div")({
   display: `flex`,
   position: `relative`,
   isolation: `isolate`,
@@ -150,6 +306,16 @@ const Items = styled("div")({
   boxSizing: `border-box`,
   alignSelf: `stretch`,
   margin: `5px 0px 0px 0px`,
+});
+
+const TextFieldStandard9 = styled(TextField)({
+  flexGrow: `1`,
+  margin: `0px`,
+});
+
+const TextFieldStandard10 = styled(TextField)({
+  flexGrow: `1`,
+  margin: `0px 0px 0px 5px`,
 });
 
 const Cta = styled("div")(({ theme }) => ({
@@ -178,10 +344,26 @@ const Links = styled("div")({
   width: `420px`,
 });
 
+const Link1 = styled("div")({
+  display: `flex`,
+  position: `relative`,
+  isolation: `isolate`,
+  flexDirection: `column`,
+  justifyContent: `flex-start`,
+  alignItems: `flex-start`,
+  padding: `0px`,
+  boxSizing: `border-box`,
+  margin: `0px`,
+});
+
 const Cancelar = styled("div")(({ theme }) => ({
   textAlign: `left`,
   whiteSpace: `pre-wrap`,
   color: `rgba(25, 118, 210, 1)`,
+  fontStyle: `normal`,
+  fontFamily: `Roboto`,
+  fontWeight: `400`,
+  fontSize: `16px`,
   letterSpacing: `0.15000000596046448px`,
   textDecoration: `none`,
   lineHeight: `150%`,
@@ -195,66 +377,69 @@ const ButtonContained = styled(Button)({
 
 function Pago(props) {
   return (
-    <Dialog open={props.isOpen} onClose={() => props.setIsOpen(false)}>
+    <Dialog open={props.isOpen} onClose={props.setIsOpen(false)}>
       <Pago1>
         <Content>
           <Frame2>
-            <Title>{`Desglose del Pago`}</Title>
-            <JuliancitoSVendingMa>
-              {`Juliancito's Vending Machine`}
-            </JuliancitoSVendingMa>
+            <Frame1>
+              <NameAndTitle>
+                <ContratarEmpleado>{`Desglose del Pago`}</ContratarEmpleado>
+              </NameAndTitle>
+            </Frame1>
+            <Frame21>
+              <NameAndTitle1>
+                <JuliancitoSVendingMa>
+                  {`Juliancito's Vending Machine`}
+                </JuliancitoSVendingMa>
+              </NameAndTitle1>
+            </Frame21>
           </Frame2>
           <Details>
-            <Coins>
-              <Comment>
+            <Frame11>
+              <SeRecomiendaPagarCon>
                 {`Se recomienda pagar con las siguientes monedas:`}
-              </Comment>
-              <Items>
+              </SeRecomiendaPagarCon>
+              <Quinientos>
                 <TextFieldStandard
                   variant="standard"
                   size="small"
-                  label={`Quinientos`}
-                  value={props.data[0].amount}
-                  disabled
+                  label={props.data[0] ? props.data[0].amount : 0}
+                  disabled={true}
                 />
-                <TextFieldStandard
+                <TextFieldStandard1
                   variant="standard"
                   size="small"
-                  label={`Cien`}
-                  value={props.data[1].amount}
-                  disabled
+                  label={props.data[1] ? props.data[1].amount : 0}
+                  disabled={true}
                 />
-              </Items>
-              <Items>
-                <TextFieldStandard
+              </Quinientos>
+              <Quinientos1>
+                <TextFieldStandard2
                   variant="standard"
                   size="small"
-                  label={`Cincuenta`}
-                  value={props.data[2].amount}
-                  disabled
+                  label={props.data[3] ? props.data[3].amount : 0}
+                  disabled={true}
                 />
-                <TextFieldStandard
+                <TextFieldStandard3
                   variant="standard"
                   size="small"
-                  label={`Veinticinco`}
-                  value={props.data[3].amount}
-                  disabled
+                  label={props.data[4] ? props.data[4].amount : 0}
+                  disabled={true}
                 />
-              </Items>
-              <TextFieldStandard
+              </Quinientos1>
+              <TextFieldStandard4
                 variant="standard"
                 size="small"
-                label={`TOTAL`}
-                value={props.total}
-                disabled
+                label={[props.total]}
+                disabled={true}
               />
-            </Coins>
+            </Frame11>
             <Inputs>
-              <Items>
-                <TextFieldStandard
+              <Frame12>
+                <TextFieldStandard5
                   variant="standard"
                   size="small"
-                  label={`Quinientos`}
+                  label={`0`}
                   type="number"
                   onInput={(e) => {
                     e.target.value = Math.max(0, parseInt(e.target.value))
@@ -262,10 +447,10 @@ function Pago(props) {
                       .slice(0, 2);
                   }}
                 />
-                <TextFieldStandard
+                <TextFieldStandard6
                   variant="standard"
                   size="small"
-                  label={`Cien`}
+                  label={`0`}
                   type="number"
                   onInput={(e) => {
                     e.target.value = Math.max(0, parseInt(e.target.value))
@@ -273,12 +458,12 @@ function Pago(props) {
                       .slice(0, 2);
                   }}
                 />
-              </Items>
-              <Items>
-                <TextFieldStandard
+              </Frame12>
+              <Frame22>
+                <TextFieldStandard7
                   variant="standard"
                   size="small"
-                  label={`Cincuenta`}
+                  label={`0`}
                   type="number"
                   onInput={(e) => {
                     e.target.value = Math.max(0, parseInt(e.target.value))
@@ -286,10 +471,10 @@ function Pago(props) {
                       .slice(0, 2);
                   }}
                 />
-                <TextFieldStandard
+                <TextFieldStandard8
                   variant="standard"
                   size="small"
-                  label={`Veinticinco`}
+                  label={`0`}
                   type="number"
                   onInput={(e) => {
                     e.target.value = Math.max(0, parseInt(e.target.value))
@@ -297,12 +482,12 @@ function Pago(props) {
                       .slice(0, 2);
                   }}
                 />
-              </Items>
-              <Items>
-                <TextFieldStandard
+              </Frame22>
+              <Frame32>
+                <TextFieldStandard9
                   variant="standard"
                   size="small"
-                  label={`Billetes`}
+                  label={`0`}
                   type="number"
                   onInput={(e) => {
                     e.target.value = Math.max(0, parseInt(e.target.value))
@@ -310,19 +495,26 @@ function Pago(props) {
                       .slice(0, 2);
                   }}
                 />
-                <TextFieldStandard
+                <TextFieldStandard10
                   variant="standard"
                   size="small"
                   label={`Solo se aceptan de 1.000`}
-                  disabled
+                  type="number"
+                  onInput={(e) => {
+                    e.target.value = Math.max(0, parseInt(e.target.value))
+                      .toString()
+                      .slice(0, 2);
+                  }}
                 />
-              </Items>
+              </Frame32>
             </Inputs>
           </Details>
         </Content>
         <Cta>
           <Links>
-            <Cancelar>{`Cancelar`}</Cancelar>
+            <Link1>
+              <Cancelar>{`Cancelar`}</Cancelar>
+            </Link1>
             <ButtonContained
               variant="contained"
               size="large"
