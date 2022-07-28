@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import DeleteIcon from "@mui/icons-material/Delete";
+import ResetIcon from "@mui/icons-material/ReplayOutlined";
 import { Tooltip } from "@mui/material";
 
 const ActionButton = styled(Button)({
@@ -8,10 +8,10 @@ const ActionButton = styled(Button)({
   margin: `0px`,
 });
 
-export default function ClearButton(props) {
+export default function ResetButton(props) {
   return (
     <>
-      <Tooltip title="Vaciar Carrito" arrow placement="bottom">
+      <Tooltip title="Reiniciar Maquinita" arrow placement="bottom">
         <ActionButton
           variant="contained"
           size="large"
@@ -19,7 +19,7 @@ export default function ClearButton(props) {
           type="submit"
           onClick={props.onClick}
         >
-          <DeleteIcon />
+          <ResetIcon />
         </ActionButton>
       </Tooltip>
     </>
