@@ -10,6 +10,7 @@ import Product from "../components/Product";
 import ResetButton from "../components/ResetButton";
 import { convertToString } from "../logic/convertToString";
 import { calculatePurchase } from "../logic/calculatePurchase";
+import ModalPago from "../components/ModalPago";
 
 const CartItem = styled(ListItem)({
   width: `260px`,
@@ -30,6 +31,9 @@ const Veinticinco = 25;
 const colonSign = `\u20A1`;
 
 export default function Home() {
+  const [totalAmount, setTotalAmount] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+  const [fullPrice, setFullPrice] = useState(0);
   const [soda, setSoda] = useState("");
   const [amount, setAmount] = useState(0);
   const [isValidSelection, setIsValidSelection] = useState(false);
@@ -117,11 +121,9 @@ export default function Home() {
         totalPrice += item.price * item.amount;
       });
       let priceString = convertToString(totalPrice);
-      return (
-        <ListItemText primary={"Total: " + colonSign + priceString}/>
-      )
+      return <ListItemText primary={"Total: " + colonSign + priceString} />;
     } else {
-      return <ListItemText primary={"Total: " + colonSign + "0"}/>;
+      return <ListItemText primary={"Total: " + colonSign + "0"} />;
     }
   };
 
@@ -148,6 +150,13 @@ export default function Home() {
         let coinIndex = coins.findIndex((c) => c.value === coin.value);
         coins[coinIndex].amount -= coin.amount;
       }
+      let total = 0;
+      cart.forEach((item) => {
+        total += item.price * item.amount;
+      });
+      setFullPrice(total);
+      setTotalAmount(purchase);
+      setIsOpen(true);
     } else {
       console.log("No se pudo completar el pago");
     }
@@ -183,6 +192,12 @@ export default function Home() {
 
   return (
     <>
+      <ModalPago
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        data={totalAmount}
+        total={fullPrice}
+      />
       <div className={styles.Title}>
         <h1 className={styles.TitleHeader}>
           EXAMEN 2 - INGENIERIA DE SOFTWARE - PARTE 2 - B97634
