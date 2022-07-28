@@ -1,6 +1,6 @@
 import { List, ListItem, ListItemText } from "@mui/material";
 import styles from "../styles/Home.module.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import { styled } from "@mui/material/styles";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCartOutlined";
 import SubmitForm from "../components/SubmitForm";
@@ -156,11 +156,12 @@ export default function Home() {
       });
       setFullPrice(total);
       setTotalAmount(purchase);
-      setIsOpen(true);
+      if(totalAmount.length > 0){
+        setIsOpen(true);
+      }
     } else {
       console.log("No se pudo completar el pago");
     }
-    setCart([]);
   };
 
   const clearCart = () => {
@@ -228,6 +229,7 @@ export default function Home() {
               onClick={completePurchase}
               text="Comprar"
               color="primary"
+              disabled={cart.length === 0}
             />
             <ClearButton onClick={clearCart} color="error" />
             <ResetButton onClick={resetMachine} color="warning" />
