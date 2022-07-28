@@ -323,7 +323,12 @@ function Pago(props) {
         <Cta>
           <Links>
             <Cancelar>{`Cancelar`}</Cancelar>
-            <ButtonContained variant="contained" size="large" color="primary">
+            <ButtonContained
+              variant="contained"
+              size="large"
+              color="primary"
+              onClick={props.setIsOpen(false)}
+            >
               {" "}
               PAGAR{" "}
             </ButtonContained>
