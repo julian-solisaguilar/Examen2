@@ -7,6 +7,9 @@ import SubmitForm from "../components/SubmitForm";
 import SubmitButton from "../components/SubmitButton";
 import ClearButton from "../components/ClearButton";
 import Product from "../components/Product";
+import ResetButton from "../components/ResetButton";
+import { convertToString } from "../logic/convertToString";
+import { calculatePurchase } from "../logic/calculatePurchase";
 
 const CartItem = styled(ListItem)({
   width: `260px`,
@@ -20,22 +23,40 @@ const CartItem = styled(ListItem)({
   boxShadow: `inset 0px -1px 0px rgba(0, 0, 0, 0.12)`,
 });
 
+const Quinientos = 500;
+const Cien = 100;
+const Cincuenta = 50;
+const Veinticinco = 25;
+const colonSign = `\u20A1`;
+
 export default function Home() {
   const [soda, setSoda] = useState("");
   const [amount, setAmount] = useState(0);
   const [isValidSelection, setIsValidSelection] = useState(false);
   const [cart, setCart] = useState([]);
+  const defaultCans = [
+    { soda: "CocaCola", amount: 10, price: 500, src: "CocaCola.svg" },
+    { soda: "Pepsi", amount: 8, price: 600, src: "Pepsi.svg" },
+    { soda: "Fanta", amount: 10, price: 550, src: "Fanta.svg" },
+    { soda: "Sprite", amount: 15, price: 725, src: "Sprite.svg" },
+  ];
   const [cans, setCans] = useState([
     { soda: "CocaCola", amount: 10, price: 500, src: "CocaCola.svg" },
     { soda: "Pepsi", amount: 8, price: 600, src: "Pepsi.svg" },
     { soda: "Fanta", amount: 10, price: 550, src: "Fanta.svg" },
     { soda: "Sprite", amount: 15, price: 725, src: "Sprite.svg" },
   ]);
+  const defaultCoins = [
+    { value: Quinientos, amount: 20 },
+    { value: Cien, amount: 30 },
+    { value: Cincuenta, amount: 50 },
+    { value: Veinticinco, amount: 25 },
+  ];
   const [coins, setCoins] = useState([
-    { value: 500, amount: 20 },
-    { value: 100, amount: 30 },
-    { value: 50, amount: 50 },
-    { value: 25, amount: 25 },
+    { value: Quinientos, amount: 20 },
+    { value: Cien, amount: 30 },
+    { value: Cincuenta, amount: 50 },
+    { value: Veinticinco, amount: 25 },
   ]);
 
   useEffect(() => {
@@ -55,9 +76,9 @@ export default function Home() {
           can.amount -= amount;
         }
         return can;
-      }),
+      })
     );
-  }
+  };
 
   const checkSelection = () => {
     let selection = cans.find((can) => can.soda === soda);
@@ -67,11 +88,10 @@ export default function Home() {
       } else {
         setIsValidSelection(false);
       }
-    }
-    else {
+    } else {
       setIsValidSelection(false);
     }
-  }
+  };
 
   const getItems = () => {
     if (cart.length > 0) {
@@ -79,7 +99,7 @@ export default function Home() {
         return (
           <CartItem key={index}>
             <ListItemText
-              primary={item.soda + " x " + `\u20A1` + item.price}
+              primary={item.soda + " x " + colonSign + item.price}
               secondary={"Cantidad de unidades: " + item.amount}
             />
           </CartItem>
@@ -92,11 +112,16 @@ export default function Home() {
 
   const getTotal = () => {
     if (cart.length > 0) {
-      return cart.reduce((acc, item) => {
-        return acc + item.price * item.amount;
-      }, 0);
+      let totalPrice = 0;
+      cart.forEach((item) => {
+        totalPrice += item.price * item.amount;
+      });
+      let priceString = convertToString(totalPrice);
+      return (
+        <ListItemText primary={"Total: " + colonSign + priceString}/>
+      )
     } else {
-      return 0;
+      return <ListItemText primary={"Total: " + colonSign + "0"}/>;
     }
   };
 
@@ -116,12 +141,30 @@ export default function Home() {
   };
 
   const completePurchase = () => {
-    console.log("Pago completado");
+    let purchase = calculatePurchase(cart, coins);
+    if (purchase.length > 0) {
+      for (let i = 0; i < purchase.length; i++) {
+        let coin = purchase[i];
+        let coinIndex = coins.findIndex((c) => c.value === coin.value);
+        coins[coinIndex].amount -= coin.amount;
+      }
+    } else {
+      console.log("No se pudo completar el pago");
+    }
     setCart([]);
   };
 
   const clearCart = () => {
     setCart([]);
+    setCans(defaultCans);
+  };
+
+  const resetMachine = () => {
+    setCart([]);
+    setCans(defaultCans);
+    setCoins(defaultCoins);
+    setSoda("");
+    setAmount(0);
   };
 
   const getProducts = () => {
@@ -172,6 +215,7 @@ export default function Home() {
               color="primary"
             />
             <ClearButton onClick={clearCart} color="error" />
+            <ResetButton onClick={resetMachine} color="warning" />
           </div>
         </div>
       </div>
